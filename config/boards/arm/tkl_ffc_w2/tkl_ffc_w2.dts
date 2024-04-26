@@ -10,7 +10,7 @@
 #include <dt-bindings/led/led.h>
 
 / {
-	model = "tkl_ffc_w2;
+	model = "tkl_ffc_w2";
 	compatible = "tkl_ffc_w2";
 
 	chosen {
