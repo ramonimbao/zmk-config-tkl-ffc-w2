@@ -1,0 +1,15 @@
+identifier: tkl_ffc_w2
+name: tkl_ffc_w2
+type: mcu
+arch: arm
+toolchain:
+  - zephyr
+  - gnuarmemb
+  - xtools
+supported:
+  - adc
+  - usb_device
+  - ble
+  - ieee802154
+  - pwm
+  - watchdog
