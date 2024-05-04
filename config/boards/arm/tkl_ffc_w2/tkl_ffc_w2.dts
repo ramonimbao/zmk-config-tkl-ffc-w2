@@ -75,7 +75,7 @@
         compatible = "zmk,kscan-sideband-behaviors";
         wakeup-source;
         kscan = <&kscan0>;
-        soft_off_key: soft_off {
+        soft_off: soft_off {
             column = <8>;
             row = <13>;
             bindings = <&hw_soft_off>;
@@ -91,7 +91,7 @@
 	wakeup_source: wakeup_source {
 		compatible = "zmk,gpio-key-wakeup-trigger";
 
-		trigger = <&soft_off_key>;
+		trigger = <&soft_off>;
 		wakeup-source;
 	};
 
