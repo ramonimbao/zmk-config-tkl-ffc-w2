@@ -82,6 +82,13 @@
         };
     };
 
+	keys {
+        compatible = "gpio-keys";
+        soft_off_key: soft_off_key {
+            gpios = <&gpio0 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;
+        };
+    };
+
 	ext-power {
 		compatible = "zmk,ext-power-generic";
 		label = "EXT_POWER";
@@ -91,7 +98,7 @@
 	wakeup_source: wakeup_source {
 		compatible = "zmk,gpio-key-wakeup-trigger";
 
-		trigger = <&hw_soft_off>;
+		trigger = <&soft_off_key>;
 		wakeup-source;
 	};
 
