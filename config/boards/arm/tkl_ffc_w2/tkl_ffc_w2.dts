@@ -75,7 +75,7 @@
         compatible = "zmk,kscan-sideband-behaviors";
         wakeup-source;
         kscan = <&kscan0>;
-        soft_off: soft_off {
+        soft_off {
             column = <8>;
             row = <13>;
             bindings = <&hw_soft_off>;
