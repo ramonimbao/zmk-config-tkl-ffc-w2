@@ -73,7 +73,7 @@
 	keys: on_off_key {
 		compatible = "gpio-keys";
 		soft_off_key: soft_off_key {
-			gpios = <&gpio1  6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;
+			gpios = <&gpio1  6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
 		};
 	};
 
@@ -89,6 +89,14 @@
 		trigger = <&soft_off_key>;
 		wakeup-source;
 	};
+
+	behaviors {
+        hw_soft_off: hw_soft_off {
+            compatible = "zmk,behavior-soft-off";
+            #binding-cells = <0>;
+            hold-time-ms = <5000>;
+        };
+    };
 };
 
 &gpio0 {
