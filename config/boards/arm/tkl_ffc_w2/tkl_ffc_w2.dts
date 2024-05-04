@@ -18,7 +18,7 @@
 		zephyr,sram = &sram0;
 		zephyr,flash = &flash0;
 		zmk,battery = &fuelgauge;
-		zmk,kscan = &kscan0;
+		zmk,kscan = &side_band_behavior_triggers;
 		zmk,matrix_transform = &default_transform;
 		zmk,underglow = &led_strip;
 		/* zephyr,console = &cdc_acm_uart; */
@@ -56,6 +56,7 @@
 			, <&gpio0  6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
 			, <&gpio0 24 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
 			, <&gpio1  0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+			, <&gpio1  6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
 			;
 		col-gpios
 			= <&gpio0 29 GPIO_ACTIVE_HIGH>
@@ -70,12 +71,16 @@
 			;
 	};
 
-	keys: on_off_key {
-		compatible = "gpio-keys";
-		soft_off_key: soft_off_key {
-			gpios = <&gpio1  6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-		};
-	};
+	side_band_behavior_triggers: side_band_behavior_triggers {
+        compatible = "zmk,kscan-sideband-behaviors";
+        wakeup-source;
+        kscan = <&kscan>;
+        soft_off {
+            column = <8>;
+            row = <13>;
+            bindings = <&hw_soft_off>;
+        };
+    };
 
 	ext-power {
 		compatible = "zmk,ext-power-generic";
@@ -96,6 +101,11 @@
             #binding-cells = <0>;
             hold-time-ms = <5000>;
         };
+    };
+
+	soft_off_wakers {
+        compatible = "zmk,soft-off-wakeup-sources";
+        wakeup-sources = <&wakeup_source>;
     };
 };
 
